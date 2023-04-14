@@ -1,17 +1,11 @@
-package com.example.M2S11.models;
+package com.example.M2S11.dtos.getRequests;
 
-import jakarta.persistence.*;
+import com.example.M2S11.models.Pergunta;
+import jakarta.persistence.OneToOne;
 
-@Entity
-@Table(name = "respostas")
-public class Reposta {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class RespostaGetRequest {
     private int id;
     private String texto;
-    @OneToOne
-    private Pergunta pergunta;
 
     public int getId() {
         return id;
@@ -36,4 +30,6 @@ public class Reposta {
     public void setPergunta(Pergunta pergunta) {
         this.pergunta = pergunta;
     }
+
+    private Pergunta pergunta;
 }
