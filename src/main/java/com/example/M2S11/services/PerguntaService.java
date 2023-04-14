@@ -16,8 +16,14 @@ public class PerguntaService {
     @Autowired
     private PerguntaMapper mapper;
 
+    public PerguntaResponse busca(int id) {
+        return mapper.map(repository.findById(id).orElseThrow(RuntimeException::new));
+    }
+
     public List<PerguntaResponse> busca(PerguntaGetRequest requestParams) {
 
         return mapper.map(repository.findAll());
     }
+
+
 }
