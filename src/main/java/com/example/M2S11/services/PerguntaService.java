@@ -2,6 +2,7 @@ package com.example.M2S11.services;
 
 import com.example.M2S11.dtos.getRequests.PerguntaGetRequest;
 import com.example.M2S11.dtos.getRequests.QuizGetRequest;
+import com.example.M2S11.dtos.requests.PerguntaRequest;
 import com.example.M2S11.dtos.responses.PerguntaResponse;
 import com.example.M2S11.dtos.responses.QuizResponse;
 import com.example.M2S11.mappers.PerguntaMapper;
@@ -11,8 +12,10 @@ import com.example.M2S11.repositories.PerguntaRepository;
 import com.example.M2S11.repositories.QuizRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.net.URI;
 import java.util.List;
 
 @Service
@@ -39,5 +42,11 @@ public class PerguntaService {
         }
 
 
+    }
+
+    public PerguntaResponse criarPergunta(PerguntaRequest perguntaRequest) {
+        Pergunta pergunta = repository.save(mapper.map(perguntaRequest));
+
+        return mapper.map(pergunta);
     }
 }
