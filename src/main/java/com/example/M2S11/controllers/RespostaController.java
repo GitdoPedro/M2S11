@@ -5,28 +5,28 @@ import com.example.M2S11.dtos.getRequests.RespostaGetRequest;
 import com.example.M2S11.dtos.responses.RespostaResponse;
 import com.example.M2S11.services.RespostaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/quizzes")
+@RequestMapping("/respostas")
 public class RespostaController {
 
     @Autowired
     private RespostaService service;
+
     /* Crie endpoints de método GET que realizem as listagens: Todas as Respostas */
-
-    @GetMapping("/{id}")
-    public RespostaResponse getResposta(@PathVariable int id) {
-        return service.busca(id);
-    }
     @GetMapping
-    public List<RespostaResponse> getPergunta(RespostaGetRequest requestParams){
+    public ResponseEntity<List<RespostaResponse>> getRespostas(RespostaGetRequest requestParams){
 
-        return service.busca(requestParams);
+        return ResponseEntity.ok(service.getRespostas(requestParams));
     }
+
+    @GetMapping("/{id}") ////Devemos ter também endpoits GET para retornar: (A Resposta por ID utilize path parameters
+    public ResponseEntity<RespostaResponse> getRespostaById(@PathVariable Integer id) {
+        return ResponseEntity.ok(service.getRespostaById(id));
+    }
+
 }

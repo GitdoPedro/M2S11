@@ -4,14 +4,16 @@ import com.example.M2S11.models.Pergunta;
 import jakarta.persistence.OneToOne;
 
 public class RespostaResponse {
-    private int id;
+    private Integer id;
     private String texto;
 
-    public int getId() {
+    private Pergunta pergunta;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -31,5 +33,5 @@ public class RespostaResponse {
         this.pergunta = pergunta;
     }
 
-    private Pergunta pergunta;
+
 }

@@ -12,6 +12,7 @@ public interface RespostaMapper {
 
     //Resposta map(RespostaRequest source);
     RespostaResponse map(Resposta source);
+    Resposta map(RespostaResponse source);
     List<RespostaResponse> map(List<Resposta> source);
 
 

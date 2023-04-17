@@ -4,6 +4,7 @@ import com.example.M2S11.dtos.getRequests.QuizGetRequest;
 import com.example.M2S11.dtos.responses.QuizResponse;
 import com.example.M2S11.services.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,16 +17,18 @@ import java.util.List;
 public class QuizController {
     @Autowired
     private QuizService service;
-    /* Crie endpoints de método GET que realizem as listagens: Todas as Quizzes */
 
-    @GetMapping("/{id}")
-    public QuizResponse getQuiz(@PathVariable int id) {
-        return service.busca(id);
+
+    @GetMapping("/{id}") //Devemos ter também endpoits GET para retornar: (O Quiz por ID utilize path parameters
+    public ResponseEntity<QuizResponse> getQuizById(@PathVariable Integer id) {
+        return ResponseEntity.ok(service.getQuizById(id));
     }
 
+    /* Crie endpoints de método GET que realizem as listagens: Todas os Quizzes */
     @GetMapping
-    public List<QuizResponse> getPergunta(QuizGetRequest requestParams){
-
-        return service.busca(requestParams);
+    public ResponseEntity<List<QuizResponse>> getAllQuiz() {
+        return ResponseEntity.ok(service.getAllQuiz());
     }
 }
+
+

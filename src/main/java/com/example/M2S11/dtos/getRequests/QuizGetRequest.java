@@ -1,15 +1,15 @@
 package com.example.M2S11.dtos.getRequests;
 
 public class QuizGetRequest {
-    private int id;
+    private Integer id;
     private String nome;
     private String descricao;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

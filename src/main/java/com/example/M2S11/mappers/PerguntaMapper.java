@@ -12,6 +12,7 @@ public interface PerguntaMapper {
 
     //Pergunta map(PerguntaRequest source);
     PerguntaResponse map(Pergunta source);
+    Pergunta map(PerguntaResponse source);
     List<PerguntaResponse> map(List<Pergunta> source);
 
 
