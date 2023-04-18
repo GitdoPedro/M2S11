@@ -42,6 +42,11 @@ public class QuizController {
         return service.atualizaQuizPorId(id, quiz);
     }
 
+    @DeleteMapping("/deleta/{id}")
+    public ResponseEntity<String> deletaQuizPorId(@PathVariable Integer id) {
+        return service.deletaQuizPorId(id);
+    }
+
 }
 
 

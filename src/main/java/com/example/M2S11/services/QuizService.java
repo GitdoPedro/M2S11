@@ -60,5 +60,10 @@ public class QuizService {
 
         return ResponseEntity.ok("Quiz atualizado com sucesso!");
     }
+
+    public ResponseEntity<String> deletaQuizPorId(Integer id) {
+        repository.deleteById(id);
+        return ResponseEntity.ok("Quiz deletado com sucesso");
+    }
 }
 
