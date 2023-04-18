@@ -1,12 +1,12 @@
 package com.example.M2S11.services;
 
-import com.example.M2S11.dtos.getRequests.QuizGetRequest;
+
 import com.example.M2S11.dtos.requests.QuizRequest;
-import com.example.M2S11.dtos.responses.PerguntaResponse;
 import com.example.M2S11.dtos.responses.QuizResponse;
 import com.example.M2S11.mappers.QuizMapper;
 import com.example.M2S11.models.Quiz;
 import com.example.M2S11.repositories.QuizRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -36,4 +36,29 @@ public class QuizService {
         repository.save(quiz);
         return ResponseEntity.created(URI.create("")).body("Quiz cadastrado com sucesso");
     }
+
+    public Quiz atualizaQuiz(QuizRequest request) {
+        Quiz quiz = repository.findById(request.getId()).orElseThrow(EntityNotFoundException::new);
+
+        if (request.getNome() != null && request.getNome().length() > 0) {
+            quiz.setNome(request.getNome());
+        }
+        if (request.getDescricao() != null && request.getDescricao().length() > 0) {
+            quiz.setDescricao(request.getDescricao());
+        }
+
+        repository.save(quiz);
+
+        return (quiz);
+    }
+
+    public ResponseEntity<String> atualizaQuizPorId(Integer id, QuizRequest quiz) {
+        Quiz quizAtualizada = repository.getReferenceById(id);
+        quizAtualizada.setNome(quiz.getNome());
+        quizAtualizada.setDescricao(quiz.getDescricao());
+        repository.save(quizAtualizada);
+
+        return ResponseEntity.ok("Quiz atualizado com sucesso!");
+    }
 }
+

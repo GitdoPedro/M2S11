@@ -15,4 +15,5 @@ public interface QuizMapper {
     QuizResponse map(Quiz source);
     List<QuizResponse> map(List<Quiz> source);
 
+    //QuizRequest map(Quiz source);
 }

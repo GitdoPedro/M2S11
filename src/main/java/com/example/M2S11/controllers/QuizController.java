@@ -7,6 +7,7 @@ import com.example.M2S11.models.Quiz;
 import com.example.M2S11.services.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -35,6 +36,12 @@ public class QuizController {
     public ResponseEntity<String> criaQuiz(@RequestBody Quiz quiz) {
         return service.cadastraQuiz(quiz);
     }
+
+    @PutMapping("/atualiza")
+    public ResponseEntity<String> atualizaQuizPorId(@RequestParam Integer id, @RequestBody @Validated QuizRequest quiz) {
+        return service.atualizaQuizPorId(id, quiz);
+    }
+
 }
 
 
